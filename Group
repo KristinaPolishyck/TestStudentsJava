@@ -1,0 +1,57 @@
+package students;
+
+import java.util.Collection;
+
+public class Group {
+	    private int groupId;
+	    private String nameGroup;
+	    private String speciality;
+        private int professorID;	   
+     	   
+		public int getProfessorID() {
+			return professorID;
+		}
+		public void setProfessorID(int professorID) {
+			this.professorID = professorID;
+		}
+		public int getGroupId() {
+	        return groupId;
+	    }
+	    public void setGroupId(int groupId) {
+	        this.groupId = groupId;
+	    }
+
+	     public String getNameGroup() {
+	        return nameGroup;
+	    }
+	    public void setNameGroup(String nameGroup) {
+	        this.nameGroup = nameGroup;
+	    }
+
+	    public String getSpeciality() {
+	        return speciality;
+	    }
+	    public void setSpeciality(String speciality) {
+	        this.speciality = speciality;
+	    }
+
+	    public String toString() {
+	        return nameGroup;
+	    }
+	    
+	    public String selectGroupLeader(Collection<Student> students){
+	    	Student student = null;
+	    	int maxIQ = 0;
+	        for (Student si : students) {
+	        	
+	        	if (maxIQ < si.getIQ())
+	        	maxIQ = si.getIQ();
+	        	student= si; 
+			}
+	        return "Староста группы " + student.getFirstName()+ " "+ student.getPatronymic(); 
+	    }
+	      
+	}
+	        
+
+
