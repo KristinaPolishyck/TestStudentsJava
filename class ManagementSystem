@@ -1,0 +1,276 @@
+package Main;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.List;
+import java.util.TreeSet;
+
+import professor.Professor;
+
+import students.Group;
+import students.Student;
+
+public class ManagementSystem {
+
+    private List<Group> groups;
+    private Collection<Student> students;
+    private Collection<Professor> professors;
+
+    private static ManagementSystem instance;
+
+    public static synchronized ManagementSystem getInstance() {
+        if (instance == null) {
+            instance = new ManagementSystem();
+        }
+        return instance;
+    }
+
+    public  ManagementSystem() {
+        loadGroups();
+        loadStudents();
+        loadProfessor();
+    }
+
+    public void loadProfessor() {
+    	if (professors == null) {
+    		professors = new TreeSet<Professor>();
+        } else {
+        	professors.clear();
+        }
+    	Professor p = null;
+         Calendar c = Calendar.getInstance();
+
+         p = new Professor();
+         p.setProfessorId(1);
+         p.setFirstName("РњРёС…Р°РёР»");
+         p.setPatronymic("РњР°РЅСѓСЃРѕРІРёС‡");
+         p.setSurName("РњСѓС‡РЅРёРє");
+         p.setSex('Рњ');
+         c.set(1980, 3, 20);
+         p.setDateOfBirth(c.getTime());
+         p.setGroupId(2);
+         professors.add(p);
+         
+         p = new Professor();
+         p.setProfessorId(2);
+         p.setFirstName("Р’Р°Р»РµРЅС‚РёРЅ");
+         p.setPatronymic("РњРёС…Р°Р№Р»РѕРІРёС‡");
+         p.setSurName("Р‘Р°РґР°РµРІ");
+         p.setSex('Рњ');
+         c.set(1981, 3, 20);
+         p.setDateOfBirth(c.getTime());
+         p.setGroupId(1);
+         professors.add(p);
+        
+	}
+
+ 
+       public void loadGroups() {
+        if (groups == null) {
+            groups = new ArrayList<Group>();
+        } else {
+            groups.clear();
+        }
+        Group g = null;
+
+        g = new Group();
+        g.setGroupId(1);
+        g.setNameGroup("РџСЂРѕРіСЂР°РјРјРЅР°СЏ РёРЅР¶РµРЅРµСЂРёСЏ");
+        g.setProfessorID(1);
+        g.setSpeciality("РџСЂРѕРіСЂР°РјРјРёСЃС‚С‹");
+        groups.add(g);
+
+        g = new Group();
+        g.setGroupId(2);
+        g.setNameGroup("РџСЂРѕРіСЂР°РјРјРЅРѕРµ РѕР±РµСЃРїРµС‡РµРЅРёРµ СЃРёСЃС‚РµРј");
+        g.setProfessorID(2);
+        g.setSpeciality("РџСЂРѕРіСЂР°РјРјРёСЃС‚С‹");
+        groups.add(g);
+    }
+   
+    public void loadStudents() {
+        if (students == null) {
+            students = new TreeSet<Student>();
+        } else {
+            students.clear();
+        }
+
+        Student s = null;
+        Calendar c = Calendar.getInstance();
+
+        s = new Student();
+        s.setStudentId(1);
+        s.setFirstName("Р’Р°СЃРёР»РёР№");
+        s.setPatronymic("РЎРµСЂРіРµРµРІРёС‡");
+        s.setSurName("РРІР°РЅРѕРІ");
+        s.setSex('Рњ');
+        c.set(1990, 3, 20);
+        s.setDateOfBirth(c.getTime());
+        s.setGroupId(2);
+        s.setEducationYear(2017);
+        s.setSavvy(90);
+        s.setIQ(60);
+        s.setAbsence(true);
+        students.add(s);
+
+        s = new Student();
+        s.setStudentId(2);
+        s.setFirstName("РљСЂРёСЃС‚РёРЅР°");
+        s.setPatronymic("РЎРµСЂРіРµРµРІРЅР°");
+        s.setSurName("РџРѕР»РёС‰СѓРє");
+        s.setSex('Р–');
+        c.set(1993, 6, 20);
+        s.setDateOfBirth(c.getTime());
+        s.setGroupId(2);
+        s.setEducationYear(2017);
+        s.setSavvy(96);
+        s.setIQ(89);
+        s.setAbsence(false);
+        students.add(s);
+
+        s = new Student();
+        s.setStudentId(3);
+        s.setFirstName("Р‘РѕРіРґР°РЅ");
+        s.setPatronymic("РђР»РµРєСЃР°РЅРґСЂРѕРІРёС‡");
+        s.setSurName("Р§Р°Р»С‹Р№");
+        s.setSex('Рњ');
+        c.set(1991, 4, 9);
+        s.setDateOfBirth(c.getTime());
+        s.setEducationYear(2017);
+        s.setGroupId(1);
+        s.setSavvy(98);
+        s.setIQ(79);
+        s.setAbsence(false);
+        students.add(s);
+
+        s = new Student();
+        s.setStudentId(4);
+        s.setFirstName("Р’РµСЂРѕРЅРёРєР°");
+        s.setPatronymic("РЎРµСЂРіРµРµРІРЅР°");
+        s.setSurName("РљРѕРІР°Р»РµРІР°");
+        s.setSex('Р–');
+        c.set(1991, 7, 19);
+        s.setDateOfBirth(c.getTime());
+        s.setEducationYear(2017);
+        s.setGroupId(1);
+        s.setSavvy(60);
+        s.setIQ(79);
+        s.setAbsence(true);
+        students.add(s);
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public Collection<Student> getAllStudents() {
+        return students;
+    }
+    public Collection<Professor> getAllProfessors() {
+        return professors;
+    }
+    
+
+    public Collection<Student> getStudentsFromGroup(Group group, int year) {
+        Collection<Student> l = new TreeSet<Student>();
+        for (Student si : students) {
+            if (si.getGroupId() == group.getGroupId() && si.getEducationYear() == year) {
+                l.add(si);
+            }
+        }
+        return l;
+    }
+
+ 
+    public void removeStudentsFromGroup(Group group, int year) {
+        Collection<Student> tmp = new TreeSet<Student>();
+        for (Student si : students) {
+            if (si.getGroupId() != group.getGroupId() || si.getEducationYear() != year) {
+                tmp.add(si);
+            }
+        }
+        students = tmp;
+    }
+
+    public void insertStudent(Student student) {
+         students.add(student);
+    }
+
+   
+    public void deleteStudent(Student student) {
+        Student delStudent = null;
+        for (Student si : students) {
+            if (si.getStudentId() == student.getStudentId()) {
+                delStudent = si;
+                break;
+            }
+        }
+        students.remove(delStudent);
+    }
+    
+    
+    public static void main(String[] args) {
+    	 ManagementSystem ms = ManagementSystem.getInstance(); 
+
+	        System.out.println("РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє РіСЂСѓРїРї");
+	        System.out.println("*******************");
+	        List<Group> allGroups = ms.getGroups();
+	        for (Group gi : allGroups) {
+	        	System.out.println(gi);
+	        }
+	        System.out.println();
+	          	        
+	        System.out.println("РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє РїСЂРѕС„РµСЃСЃРѕСЂРѕРІ");
+	        System.out.println("*******************");
+	        Collection<Professor> allProfessors = ms.getAllProfessors();
+	        for (Professor pi : allProfessors) {
+	        	System.out.println(pi);
+	        }
+	        System.out.println();
+	        
+
+	        System.out.println("РџРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ");
+	        System.out.println("***********************");
+	        Collection<Student> allStudends = ms.getAllStudents();
+	        for (Student si : allStudends) {
+	        	System.out.println(si);
+	        	System.out.println();
+	        }
+	        System.out.println();
+	       
+	        System.out.println("РЎРїРёСЃРѕРє СЃС‚СѓРґРµРЅС‚РѕРІ РїРѕ РіСЂСѓРїРїР°Рј");
+	        System.out.println("***************************");
+	        
+	        List<Group> groups = ms.getGroups();
+	        for (Group gi : groups) {
+	          	System.out.println("-> Р“СЂСѓРїРїР°:" + gi.getNameGroup());
+	            Collection<Student> students = ms.getStudentsFromGroup(gi, 2017);
+	        for (Student si : students) {
+	            System.out.println(si);
+	            System.out.println();
+	            }	            
+	        }
+	        System.out.println("РЎС‚Р°СЂРѕСЃС‚С‹ РіСЂСѓРїРї");
+		    System.out.println("*******************");
+		    for (Group gi : allGroups) {
+		    	System.out.println("РЎС‚СѓРґРµРЅС‚С‹ РіСЂСѓРїРїС‹ "+gi + "РІС‹Р±СЂР°Р»Рё СЃС‚Р°СЂРѕСЃС‚РѕР№ "+ 
+		                gi.selectGroupLeader(ms.getAllStudents()).toString());
+		        }
+		        System.out.println();
+	            
+	        System.out.println();
+	             
+	        System.out.println("РЎРїРёСЃРѕРє РїСЂРёСЃСѓРґСЃС‚РІСѓСЋС‰РёС… СЃС‚СѓРґРµРЅС‚РѕРІ");
+	        System.out.println("***************************");
+	        Collection<Professor> groupIsNotAbs = ms.getAllProfessors();
+            for (Professor pi : groupIsNotAbs) {
+            	System.out.println("->РЈ РїСЂРѕС„С„РµСЃРѕСЂР°"+" "+ pi.getFirstName()+ " " + pi.getPatronymic());
+            	System.out.println("РїСЂРёСЃСѓРґСЃС‚РІСѓСЋС‚ cС‚СѓРґРµРЅС‚С‹ :" );
+            	System.out.println(pi.checkIsNotAbsence(ms.getAllStudents()).toString());
+                }
+            
+            
+}
+        
+}
